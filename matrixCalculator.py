@@ -41,6 +41,6 @@ elif userChoice == "ms":
     myMatrix = inputs.createMatrix(rows,columns)
     scalarNumber = inputs.getSecuredInt("Enter the scalar you want to use for multiplcation: ")
     results = matrix.multiplicationByScalar(scalarNumber,myMatrix)
-    print(f"The results are: \n{matrix.toString(results)}")
+    print(f"The results are:{matrix.toString(results)}")
 
     
