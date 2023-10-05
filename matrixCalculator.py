@@ -1,3 +1,4 @@
-import Functions.generic
-import Functions.matrixes
-import Functions.userInputs
+import Functions.generic as generic
+import Functions.matrixes as matrix
+import Functions.userInputs as inputs
+
