@@ -1,5 +1,7 @@
 from .generic import clear
 
+
+#Full on user input stuff
 def getSecuredInt(promt = "Enter the integer: ", errorHandler = "The input must be an integer"):
     noError = False
     userInput = 0
@@ -12,14 +14,38 @@ def getSecuredInt(promt = "Enter the integer: ", errorHandler = "The input must 
             print(errorHandler)
             noError = False
     return userInput
-def multipleChoice(choices):
+def multipleChoice(prompt,choices = {}, printChoices = False):
     #choices will be a dictionary
-    print("")
+    if printChoices:
+        for choice in choices:
+            prompt += f"\n({choice}){choices[choice]}"
+    userInputIsChoice = False
+    userInput = None
+    prompt += "\n"
+    while(not userInputIsChoice):
+        
+        userInput = input(prompt)
+        for choice in choices:
+            if userInput == choice:
+                userInputIsChoice = True
+        if not userInputIsChoice:
+            clear()
+            print("You need to choose one of the avaible choices.")
+    return userInput
+    
+    
+
+    
+
+# Matrix related operation that requires user input
+def createMatrix(rows,columns):
+    """
+    This function is a console based function to create matrixes via console based user inputs
 
 
-def createMatrix():
-    rows = getSecuredInt("How many rows do you want to have in your matrix?: ")
-    columns = getSecuredInt("How many columns do you want to have in your matrix?: ")
+    Returns:
+        type: Matrix of x rows and y columns
+    """
     #This code will add empty arrays that will represent the rows
     myMatrix = [[] for row in range(rows)]
     #This code will make all the columns = 0 by default
@@ -37,7 +63,6 @@ def createMatrix():
         if currentColumn >= columns:
             currentRow+= 1
             currentColumn = 0
-        
-
+    clear()
+    print(f"Your final matrix is {myMatrix}")
     return myMatrix
-    
