@@ -4,7 +4,8 @@ import Functions.userInputs as inputs
 choices = {
     "add":"Addition of matrixes",
     "sub":"Substraction of matrixes",
-    "ms":"Multiplication by scalar"
+    "ms":"Multiplication by scalar",
+    "mm":"Multiplication by matrix"
     }
 
 
@@ -42,5 +43,16 @@ elif userChoice == "ms":
     scalarNumber = inputs.getSecuredInt("Enter the scalar you want to use for multiplcation: ")
     results = matrix.multiplicationByScalar(scalarNumber,myMatrix)
     print(f"The results are:{matrix.toString(results)}")
+elif userChoice == "mm":
+    firstMatrixRows = inputs.getSecuredInt("Enter the rows you want for your first matrix: ")
+    #This will define the columns for the first matrix and the rows for the second matrix
+    matrix1CMatrix2R = inputs.getSecuredInt("Enter the columns you want for your first matrix and the rows you want for your second column: ")
+    secondMatrixColumns = inputs.getSecuredInt("Enter the columns you want for your second matrix: ")
+
+    firstMatrix = inputs.createMatrix(firstMatrixRows,matrix1CMatrix2R)
+    secondMatrix = inputs.createMatrix(matrix1CMatrix2R, secondMatrixColumns)
+
+    results = matrix.multiplyByMatrix(firstMatrix,secondMatrix)
+    print(f"The first matrix:{matrix.toString(firstMatrix)}The second matrix:{matrix.toString(secondMatrix)}The result of the multiplication is:{matrix.toString(results)}")
 
     
