@@ -12,6 +12,12 @@ def subtractMatrix(firstMatrix,secondMatrix):
         for column in range(len(firstMatrix[row])):
             resultMatrix[row][column] = firstMatrix[row][column] - secondMatrix[row][column]
     return resultMatrix
+def multiplicationByScalar(scalar, myMatrix):
+    resultMatrix = createSameSizeMatrix(myMatrix)
+    for row in range(len(myMatrix)):
+        for column in range(len(myMatrix[row])):
+            resultMatrix[row][column] = scalar * myMatrix[row][column]
+    return resultMatrix
 def createSameSizeMatrix(matrix):
     rows = len(matrix)
     columns = len(matrix[0])

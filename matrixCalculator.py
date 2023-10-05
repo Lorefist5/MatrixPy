@@ -3,7 +3,8 @@ import Functions.matrixes as matrix
 import Functions.userInputs as inputs
 choices = {
     "add":"Addition of matrixes",
-    "sub":"Substraction of matrixes"
+    "sub":"Substraction of matrixes",
+    "ms":"Multiplication by scalar"
     }
 
 
@@ -22,7 +23,7 @@ if userChoice == "add":
     results = matrix.addMatrix(firstMatrix,secondMatrix)
     generic.clear()
     print(f"The first matrix: \n{matrix.toString(firstMatrix)}The second matrix:\n{matrix.toString(secondMatrix)}The result of the addition is: \n{matrix.toString(results)}")
-if userChoice == "sub":
+elif userChoice == "sub":
     #The user only enters the rows and columns once because they will be the same dimension for substraction
     rows =         inputs.getSecuredInt("Enter the amount of rows you want for both your matrixes: ")
     columns =      inputs.getSecuredInt("Enter the amount of columns you want for both your matrixes: ")
@@ -33,5 +34,13 @@ if userChoice == "sub":
     results = matrix.addMatrix(firstMatrix,secondMatrix)
     generic.clear()
     print(f"The first matrix: \n{matrix.toString(firstMatrix)}The second matrix:\n{matrix.toString(secondMatrix)}The result of the substraction is: \n{matrix.toString(results)}")
+elif userChoice == "ms":
+    rows =         inputs.getSecuredInt("Enter the amount of rows you want for your matrix: ")
+    columns =      inputs.getSecuredInt("Enter the amount of columns you want for your matrix: ")
 
+    myMatrix = inputs.createMatrix(rows,columns)
+    scalarNumber = inputs.getSecuredInt("Enter the scalar you want to use for multiplcation: ")
+    results = matrix.multiplicationByScalar(scalarNumber,myMatrix)
+    print(f"The results are: \n{matrix.toString(results)}")
 
+    
