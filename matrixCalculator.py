@@ -24,6 +24,7 @@ if userChoice == "add":
     results = matrix.addMatrix(firstMatrix,secondMatrix)
     generic.clear()
     print(f"The first matrix:{matrix.toString(firstMatrix)}The second matrix:{matrix.toString(secondMatrix)}The result of the addition is:{matrix.toString(results)}")
+
 elif userChoice == "sub":
     #The user only enters the rows and columns once because they will be the same dimension for substraction
     rows =         inputs.getSecuredInt("Enter the amount of rows you want for both your matrixes: ")
@@ -32,9 +33,10 @@ elif userChoice == "sub":
     firstMatrix =  inputs.createMatrix(rows,columns)
     secondMatrix = inputs.createMatrix(rows,columns)
 
-    results = matrix.addMatrix(firstMatrix,secondMatrix)
+    results = matrix.subtractMatrix(firstMatrix,secondMatrix)
     generic.clear()
     print(f"The first matrix:{matrix.toString(firstMatrix)}The second matrix:{matrix.toString(secondMatrix)}The result of the substraction is:{matrix.toString(results)}")
+
 elif userChoice == "ms":
     rows =         inputs.getSecuredInt("Enter the amount of rows you want for your matrix: ")
     columns =      inputs.getSecuredInt("Enter the amount of columns you want for your matrix: ")
@@ -43,6 +45,7 @@ elif userChoice == "ms":
     scalarNumber = inputs.getSecuredInt("Enter the scalar you want to use for multiplcation: ")
     results = matrix.multiplicationByScalar(scalarNumber,myMatrix)
     print(f"The results are:{matrix.toString(results)}")
+
 elif userChoice == "mm":
     firstMatrixRows = inputs.getSecuredInt("Enter the rows you want for your first matrix: ")
     #This will define the columns for the first matrix and the rows for the second matrix
