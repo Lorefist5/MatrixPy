@@ -22,7 +22,7 @@ if userChoice == "add":
 
     results = matrix.addMatrix(firstMatrix,secondMatrix)
     generic.clear()
-    print(f"The first matrix: \n{matrix.toString(firstMatrix)}The second matrix:\n{matrix.toString(secondMatrix)}The result of the addition is: \n{matrix.toString(results)}")
+    print(f"The first matrix:{matrix.toString(firstMatrix)}The second matrix:{matrix.toString(secondMatrix)}The result of the addition is:{matrix.toString(results)}")
 elif userChoice == "sub":
     #The user only enters the rows and columns once because they will be the same dimension for substraction
     rows =         inputs.getSecuredInt("Enter the amount of rows you want for both your matrixes: ")
@@ -33,7 +33,7 @@ elif userChoice == "sub":
 
     results = matrix.addMatrix(firstMatrix,secondMatrix)
     generic.clear()
-    print(f"The first matrix: \n{matrix.toString(firstMatrix)}The second matrix:\n{matrix.toString(secondMatrix)}The result of the substraction is: \n{matrix.toString(results)}")
+    print(f"The first matrix:{matrix.toString(firstMatrix)}The second matrix:{matrix.toString(secondMatrix)}The result of the substraction is:{matrix.toString(results)}")
 elif userChoice == "ms":
     rows =         inputs.getSecuredInt("Enter the amount of rows you want for your matrix: ")
     columns =      inputs.getSecuredInt("Enter the amount of columns you want for your matrix: ")

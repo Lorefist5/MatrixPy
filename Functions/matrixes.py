@@ -28,7 +28,7 @@ def createSameSizeMatrix(matrix):
     return resultMatrix
 
 def toString(matrix):
-    myMatrixString = ""
+    myMatrixString = "\n"
 
     for row in matrix:
         myMatrixString += "["
