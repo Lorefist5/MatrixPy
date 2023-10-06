@@ -45,6 +45,24 @@ def createSameSizeMatrix(matrix):
             resultMatrix[row].append(0)
     return resultMatrix
 
+def extendMatrix(matrix):
+    rows = getRows(matrix)
+    columns = getColumns(matrix)
+    if rows != 3 or columns != 3:
+        return Exception("The matrix must be 3x3 for it to be extended.")
+    for row in range(len(matrix)):
+        for column in range(len(matrix[row])):
+           if column == 0 or column == 1:
+               matrix[row].append(matrix[row][column])
+    return matrix
+
+def getRows(matrix):
+    rows = len(matrix)
+    return rows
+
+def getColumns(matrix):
+    columns = len(matrix[0])
+    return columns
 
 def toString(matrix):
     myMatrixString = "\n"
@@ -60,4 +78,5 @@ def toString(matrix):
         myMatrixString += "]\n"  # Move this line outside the inner loop
 
     return myMatrixString
+
 
