@@ -29,6 +29,27 @@ def multiplyByMatrix(matrix1, matrix2):
 
     return resultMatrix
 
+def removeColumn(columnIndex,matrix):
+    oldMatrixRows = getRows(matrix)
+    oldMatrixColumns = getColumns(matrix)
+    resultMatrix = createFixedSizeMatrix(oldMatrixRows,oldMatrixColumns - 1)
+    
+    for row in range(len(matrix)):
+        currentColumn = 0
+        for column in range(len(matrix[row])):
+           if column != columnIndex:
+               resultMatrix[row][currentColumn] = matrix[row][column]
+               currentColumn += 1
+
+    return resultMatrix
+
+def removeRow(rowIndex,matrix):
+    resultMatrix = []
+    for row in range(len(matrix)):
+        if row != rowIndex:
+            resultMatrix.append(matrix[row])
+    return resultMatrix
+
 def multiplicationByScalar(scalar, myMatrix):
     resultMatrix = createSameSizeMatrix(myMatrix)
     for row in range(len(myMatrix)):
@@ -45,8 +66,15 @@ def createSameSizeMatrix(matrix):
             resultMatrix[row].append(0)
     return resultMatrix
 
+def createFixedSizeMatrix(rows,columns):
+    resultMatrix = [[] for row in range(rows)]
+    for row in range(len(resultMatrix)):
+        for column in range(columns):
+            resultMatrix[row].append(0)
+    return resultMatrix
+
 def extendMatrix(matrix):
-    rows = getRows(matrix)
+    rows =    getRows(matrix)
     columns = getColumns(matrix)
     if rows != 3 or columns != 3:
         return Exception("The matrix must be 3x3 for it to be extended.")
