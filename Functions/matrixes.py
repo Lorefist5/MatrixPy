@@ -46,9 +46,10 @@ def minorsOfMatrix(matrix):
     if size == 3:
         for row in range(len(matrix)):
             for column in range(len(matrix[row])):
-                resultMatrix[row][column] = determinant(getSubMatrix(matrix,row,column))
+                resultMatrix[row][column] = getDeterminant(getSubMatrix(matrix,row,column))
 
     return resultMatrix
+
 def cofactorsOfMatrix(matrix):
     rows = getRows(matrix)
     resultMatrix = minorsOfMatrix(matrix)
@@ -62,7 +63,7 @@ def cofactorsOfMatrix(matrix):
         resultMatrix[2][1] *= -1
     return resultMatrix
 
-def determinant(matrix):
+def getDeterminant(matrix):
     rows = getRows(matrix)
     
     firstPart = 0
@@ -79,7 +80,12 @@ def determinant(matrix):
             secondPart += extendedMatrix[0][newSize - i] * extendedMatrix[1][newSize - (i + 1)] * extendedMatrix[2][newSize - (i + 2)]
 
     return firstPart - secondPart
-    
+
+def inverseMatrix(matrix):
+    determinant = getDeterminant(matrix)
+    cofactors = cofactorsOfMatrix(matrix)
+    inverse = multiplicationByScalar(1/determinant,cofactors)
+    return inverse
 
 #Getter functions
 def getRows(matrix):
