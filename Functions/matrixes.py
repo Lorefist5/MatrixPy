@@ -35,29 +35,39 @@ def multiplicationByScalar(scalar, myMatrix):
             resultMatrix[row][column] = scalar * myMatrix[row][column]
     return resultMatrix
 
-def getMinorsOfMatrix(matrix):
-    print(matrix)
-    input()
+def minorsOfMatrix(matrix):
     resultMatrix = createSameSizeMatrix(matrix) #We create a new matrix so that we don't use the reference value of matrix
     size = getRows(matrix)
     if size == 2:
         resultMatrix[0][0] =  matrix[1][1]
-        resultMatrix[0][1] = -matrix[0][1]
-        resultMatrix[1][0] = -matrix[1][0]
+        resultMatrix[0][1] =  matrix[0][1]
+        resultMatrix[1][0] =  matrix[1][0]
         resultMatrix[1][1] =  matrix[0][0]
     if size == 3:
         for row in range(len(matrix)):
             for column in range(len(matrix[row])):
-                resultMatrix[row][column] = getDeterminant(getSubMatrix(matrix,row,column))
+                resultMatrix[row][column] = determinant(getSubMatrix(matrix,row,column))
 
     return resultMatrix
-    
-def getDeterminant(matrix):
+def cofactorsOfMatrix(matrix):
+    rows = getRows(matrix)
+    resultMatrix = minorsOfMatrix(matrix)
+    if rows == 2:
+        resultMatrix[0][1] = -matrix[0][1]
+        resultMatrix[1][0] = -matrix[1][0]
+    else:
+        resultMatrix[0][1] *= -1
+        resultMatrix[1][0] *= -1
+        resultMatrix[1][2] *= -1
+        resultMatrix[2][1] *= -1
+    return resultMatrix
+
+def determinant(matrix):
     rows = getRows(matrix)
     
     firstPart = 0
     secondPart = 0
-    if(rows == 2): #If the matrix is a 2x2 it only needs to do this
+    if(rows == 2): 
         firstPart = matrix[0][0] * matrix[1][1]
         secondPart = matrix[0][1] * matrix[1][0]
     elif(rows == 3):
@@ -70,6 +80,29 @@ def getDeterminant(matrix):
 
     return firstPart - secondPart
     
+
+#Getter functions
+def getRows(matrix):
+    rows = len(matrix)
+    return rows
+
+def getColumns(matrix):
+    columns = len(matrix[0])
+    return columns
+
+def getSubMatrix(matrix,row,column):
+    resultMatrix = removeColumn(column,matrix)
+    resultMatrix = removeRow(row, resultMatrix)
+    return resultMatrix
+
+#Misc functions for matrixes
+def createFixedSizeMatrix(rows,columns):
+    resultMatrix = [[] for row in range(rows)]
+    for row in range(len(resultMatrix)):
+        for column in range(columns):
+            resultMatrix[row].append(0)
+    return resultMatrix
+
 def removeColumn(columnIndex,matrix):
     oldMatrixRows = getRows(matrix)
     oldMatrixColumns = getColumns(matrix)
@@ -94,28 +127,6 @@ def removeRow(rowIndex,matrix):
 def createSameSizeMatrix(matrix):
     rows = len(matrix)
     columns = len(matrix[0])
-    resultMatrix = [[] for row in range(rows)]
-    for row in range(len(resultMatrix)):
-        for column in range(columns):
-            resultMatrix[row].append(0)
-    return resultMatrix
-
-#Getter functions
-def getRows(matrix):
-    rows = len(matrix)
-    return rows
-
-def getColumns(matrix):
-    columns = len(matrix[0])
-    return columns
-
-def getSubMatrix(matrix,row,column):
-    resultMatrix = removeColumn(column,matrix)
-    resultMatrix = removeRow(row, resultMatrix)
-    return resultMatrix
-
-#Misc functions for matrixes
-def createFixedSizeMatrix(rows,columns):
     resultMatrix = [[] for row in range(rows)]
     for row in range(len(resultMatrix)):
         for column in range(columns):
