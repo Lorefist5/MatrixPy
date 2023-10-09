@@ -40,7 +40,7 @@ def multipleChoice(prompt,choices = {}, printChoices = False):
 # Matrix related operation that requires user input
 def createMatrix(rows,columns):
     """
-    This function is a console based function to create matrixes via console based user inputs
+    This function is to create matrixes via console based user inputs
 
 
     Returns:
