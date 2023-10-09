@@ -1,17 +1,18 @@
 import Functions.generic as generic
 import Functions.matrixes as matrix
 import Functions.userInputs as inputs
+
+#These are the calculations the user can choose
 choices = {
     "add":"Addition of matrixes",
     "sub":"Substraction of matrixes",
     "ms":"Multiplication by scalar",
-    "mm":"Multiplication by matrix"
+    "mm":"Multiplication by matrix",
+    "dt":"Get the determinant of a matrix"
     }
 
 
-
-
-userChoice = inputs.multipleChoice("Choose which calculation do you want to do.", choices,True)
+userChoice = inputs.multipleChoice("Choose which calculation do you want to do.", choices,True) #We set the last parameter to true so that it prints the options to the console (optional)
 
 if userChoice == "add":
     #The user only enters the rows and columns once because they will be the same dimension for addition
@@ -57,5 +58,14 @@ elif userChoice == "mm":
 
     results = matrix.multiplyByMatrix(firstMatrix,secondMatrix)
     print(f"The first matrix:{matrix.toString(firstMatrix)}The second matrix:{matrix.toString(secondMatrix)}The result of the multiplication is:{matrix.toString(results)}")
-
+elif userChoice == "dt":
+    fixedSizes = {
+        "2":"2x2",
+        "3":"3x3"
+    }
+    
+    size = int(inputs.multipleChoice("Enter the size of your matrix.",fixedSizes,True))
+    myMatrix = inputs.createMatrix(size,size)
+    determinant = matrix.getDeterminant(myMatrix)
+    print(f"The determinant of this matrix is {determinant}")
     

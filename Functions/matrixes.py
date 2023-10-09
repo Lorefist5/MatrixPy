@@ -1,5 +1,4 @@
 def addMatrix(firstMatrix, secondMatrix):
-
     resultMatrix = createSameSizeMatrix(firstMatrix)
     for row in range(len(firstMatrix)):
         for column in range(len(firstMatrix[row])):
@@ -29,6 +28,33 @@ def multiplyByMatrix(matrix1, matrix2):
 
     return resultMatrix
 
+def multiplicationByScalar(scalar, myMatrix):
+    resultMatrix = createSameSizeMatrix(myMatrix)
+    for row in range(len(myMatrix)):
+        for column in range(len(myMatrix[row])):
+            resultMatrix[row][column] = scalar * myMatrix[row][column]
+    return resultMatrix
+
+def getDeterminant(matrix):
+    rows = getRows(matrix)
+    columns = getColumns(matrix)
+    
+    firstPart = 0
+    secondPart = 0
+    if(rows == 2): #If the matrix is a 2x2 it only needs to do this
+        firstPart = matrix[0][0] * matrix[1][1]
+        secondPart = matrix[0][1] * matrix[1][0]
+    elif(rows == 3):
+        extendedMatrix = extendMatrix(matrix)
+        newSize = getColumns(extendedMatrix) - 1
+        for i in range(3):
+            firstPart += extendedMatrix[0][i] * extendedMatrix[1][i + 1] * extendedMatrix[2][i + 2]
+
+            secondPart += extendedMatrix[0][newSize - i] * extendedMatrix[1][newSize - (i + 1)] * extendedMatrix[2][newSize - (i + 2)]
+
+    return firstPart - secondPart
+    
+
 def removeColumn(columnIndex,matrix):
     oldMatrixRows = getRows(matrix)
     oldMatrixColumns = getColumns(matrix)
@@ -50,13 +76,6 @@ def removeRow(rowIndex,matrix):
             resultMatrix.append(matrix[row])
     return resultMatrix
 
-def multiplicationByScalar(scalar, myMatrix):
-    resultMatrix = createSameSizeMatrix(myMatrix)
-    for row in range(len(myMatrix)):
-        for column in range(len(myMatrix[row])):
-            resultMatrix[row][column] = scalar * myMatrix[row][column]
-    return resultMatrix
-
 def createSameSizeMatrix(matrix):
     rows = len(matrix)
     columns = len(matrix[0])
@@ -66,6 +85,15 @@ def createSameSizeMatrix(matrix):
             resultMatrix[row].append(0)
     return resultMatrix
 
+#Getter functions
+def getRows(matrix):
+    rows = len(matrix)
+    return rows
+
+def getColumns(matrix):
+    columns = len(matrix[0])
+    return columns
+#Misc functions for matrixes
 def createFixedSizeMatrix(rows,columns):
     resultMatrix = [[] for row in range(rows)]
     for row in range(len(resultMatrix)):
@@ -84,14 +112,6 @@ def extendMatrix(matrix):
                matrix[row].append(matrix[row][column])
     return matrix
 
-def getRows(matrix):
-    rows = len(matrix)
-    return rows
-
-def getColumns(matrix):
-    columns = len(matrix[0])
-    return columns
-
 def toString(matrix):
     myMatrixString = "\n"
 
@@ -103,7 +123,7 @@ def toString(matrix):
             if columnIndex < len(row) - 1:
                 myMatrixString += ","
             columnIndex += 1
-        myMatrixString += "]\n"  # Move this line outside the inner loop
+        myMatrixString += "]\n" 
 
     return myMatrixString
 
