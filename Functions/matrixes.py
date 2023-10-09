@@ -35,9 +35,25 @@ def multiplicationByScalar(scalar, myMatrix):
             resultMatrix[row][column] = scalar * myMatrix[row][column]
     return resultMatrix
 
+def getMinorsOfMatrix(matrix):
+    print(matrix)
+    input()
+    resultMatrix = createSameSizeMatrix(matrix) #We create a new matrix so that we don't use the reference value of matrix
+    size = getRows(matrix)
+    if size == 2:
+        resultMatrix[0][0] =  matrix[1][1]
+        resultMatrix[0][1] = -matrix[0][1]
+        resultMatrix[1][0] = -matrix[1][0]
+        resultMatrix[1][1] =  matrix[0][0]
+    if size == 3:
+        for row in range(len(matrix)):
+            for column in range(len(matrix[row])):
+                resultMatrix[row][column] = getDeterminant(getSubMatrix(matrix,row,column))
+
+    return resultMatrix
+    
 def getDeterminant(matrix):
     rows = getRows(matrix)
-    columns = getColumns(matrix)
     
     firstPart = 0
     secondPart = 0
@@ -54,7 +70,6 @@ def getDeterminant(matrix):
 
     return firstPart - secondPart
     
-
 def removeColumn(columnIndex,matrix):
     oldMatrixRows = getRows(matrix)
     oldMatrixColumns = getColumns(matrix)
@@ -93,6 +108,12 @@ def getRows(matrix):
 def getColumns(matrix):
     columns = len(matrix[0])
     return columns
+
+def getSubMatrix(matrix,row,column):
+    resultMatrix = removeColumn(column,matrix)
+    resultMatrix = removeRow(row, resultMatrix)
+    return resultMatrix
+
 #Misc functions for matrixes
 def createFixedSizeMatrix(rows,columns):
     resultMatrix = [[] for row in range(rows)]
@@ -101,16 +122,26 @@ def createFixedSizeMatrix(rows,columns):
             resultMatrix[row].append(0)
     return resultMatrix
 
+def copyMatrix(matrix):
+    rows = len(matrix)
+    columns = len(matrix[0])
+    resultMatrix = [[] for row in range(rows)]
+    for row in range(len(resultMatrix)):
+        for column in range(columns):
+            resultMatrix[row].append(matrix[row][column])
+    return resultMatrix
+
 def extendMatrix(matrix):
     rows =    getRows(matrix)
     columns = getColumns(matrix)
+    resultMatrix = copyMatrix(matrix)
     if rows != 3 or columns != 3:
         return Exception("The matrix must be 3x3 for it to be extended.")
-    for row in range(len(matrix)):
-        for column in range(len(matrix[row])):
+    for row in range(len(resultMatrix)):
+        for column in range(len(resultMatrix[row])):
            if column == 0 or column == 1:
-               matrix[row].append(matrix[row][column])
-    return matrix
+               resultMatrix[row].append(resultMatrix[row][column])
+    return resultMatrix
 
 def toString(matrix):
     myMatrixString = "\n"

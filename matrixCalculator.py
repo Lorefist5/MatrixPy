@@ -2,13 +2,15 @@ import Functions.generic as generic
 import Functions.matrixes as matrix
 import Functions.userInputs as inputs
 
+
 #These are the calculations the user can choose
 choices = {
     "add":"Addition of matrixes",
     "sub":"Substraction of matrixes",
     "ms":"Multiplication by scalar",
     "mm":"Multiplication by matrix",
-    "dt":"Get the determinant of a matrix"
+    "dt":"Get the determinant of a matrix",
+    "mn": "Get the minors of the matrix"
     }
 
 
@@ -68,4 +70,16 @@ elif userChoice == "dt":
     myMatrix = inputs.createMatrix(size,size)
     determinant = matrix.getDeterminant(myMatrix)
     print(f"The determinant of this matrix is {determinant}")
-    
+elif userChoice == "mn":
+    fixedSizes = {
+        "2":"2x2",
+        "3":"3x3"
+    }
+
+    size = int(inputs.multipleChoice("Enter the size of your matrix.",fixedSizes,True))
+    myMatrix = inputs.createMatrix(size,size)
+    if matrix.getDeterminant(myMatrix) == 0:
+        print("The matrix is singular (determinant is zero).")
+    else:
+        minors = matrix.getMinorsOfMatrix(myMatrix)
+        print(f"The minors of this matrix are {matrix.toString(minors)}")
