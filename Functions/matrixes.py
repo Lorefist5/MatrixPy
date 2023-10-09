@@ -57,6 +57,7 @@ def cofactorsOfMatrix(matrix):
         resultMatrix[0][1] = -matrix[0][1]
         resultMatrix[1][0] = -matrix[1][0]
     else:
+        resultMatrix = getAdjacent(resultMatrix)
         resultMatrix[0][1] *= -1
         resultMatrix[1][0] *= -1
         resultMatrix[1][2] *= -1
@@ -99,6 +100,13 @@ def getColumns(matrix):
 def getSubMatrix(matrix,row,column):
     resultMatrix = removeColumn(column,matrix)
     resultMatrix = removeRow(row, resultMatrix)
+    return resultMatrix
+
+def getAdjacent(matrix):
+    resultMatrix = copyMatrix(matrix)
+    for row in range(len(matrix)):
+        for column in range(len(matrix[row])):
+            resultMatrix[column][row] = matrix[row][column]
     return resultMatrix
 
 #Misc functions for matrixes
