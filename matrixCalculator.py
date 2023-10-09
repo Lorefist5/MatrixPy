@@ -10,7 +10,8 @@ choices = {
     "ms":"Multiplication by scalar",
     "mm":"Multiplication by matrix",
     "dt":"Get the determinant of a matrix",
-    "mn": "Get the minors of the matrix"
+    "mn": "Get the minors of the matrix",
+    "cf":"Get the cofactors of the matrix"
     }
 
 
@@ -68,7 +69,7 @@ elif userChoice == "dt":
     
     size = int(inputs.multipleChoice("Enter the size of your matrix.",fixedSizes,True))
     myMatrix = inputs.createMatrix(size,size)
-    determinant = matrix.getDeterminant(myMatrix)
+    determinant = matrix.determinant(myMatrix)
     print(f"The determinant of this matrix is {determinant}")
 elif userChoice == "mn":
     fixedSizes = {
@@ -78,8 +79,21 @@ elif userChoice == "mn":
 
     size = int(inputs.multipleChoice("Enter the size of your matrix.",fixedSizes,True))
     myMatrix = inputs.createMatrix(size,size)
-    if matrix.getDeterminant(myMatrix) == 0:
+    if matrix.determinant(myMatrix) == 0:
         print("The matrix is singular (determinant is zero).")
     else:
-        minors = matrix.getMinorsOfMatrix(myMatrix)
+        minors = matrix.minorsOfMatrix(myMatrix)
+        print(f"The minors of this matrix are {matrix.toString(minors)}")
+elif userChoice == "cf":
+    fixedSizes = {
+        "2":"2x2",
+        "3":"3x3"
+    }
+
+    size = int(inputs.multipleChoice("Enter the size of your matrix.",fixedSizes,True))
+    myMatrix = inputs.createMatrix(size,size)
+    if matrix.determinant(myMatrix) == 0:
+        print("The matrix is singular (determinant is zero).")
+    else:
+        minors = matrix.cofactorsOfMatrix(myMatrix)
         print(f"The minors of this matrix are {matrix.toString(minors)}")
