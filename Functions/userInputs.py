@@ -56,13 +56,31 @@ def createMatrix(rows,columns):
     currentRow = 0
     
     while(currentRow < rows):
-        userInput = getSecuredInt(f"Enter the value [{currentRow}][{currentColumn}]: ")
-        myMatrix[currentRow][currentColumn] = userInput
-        print(f"Your current matrix is {myMatrix}")
-        currentColumn += 1
-        if currentColumn >= columns:
-            currentRow+= 1
-            currentColumn = 0
+        userInput = input(f"Enter the value [{currentRow}][{currentColumn}]: ")
+        if "," in userInput:
+            parsedUserInput = userInput.split(",")[:columns*rows]
+            for number in parsedUserInput:
+                try:
+                    int(number)
+                    myMatrix[currentRow][currentColumn] = int(number)
+                    currentColumn += 1
+                    if currentColumn >= columns:
+                        currentRow+= 1
+                        currentColumn = 0
+                except:
+                    continue
+            print(f"Your current matrix is {myMatrix}")
+        else:
+            try:
+                int(userInput)
+                myMatrix[currentRow][currentColumn] = int(userInput)
+                print(f"Your current matrix is {myMatrix}")
+                currentColumn += 1
+                if currentColumn >= columns:
+                    currentRow+= 1
+                    currentColumn = 0
+            except:
+                continue
     clear()
     print(f"Your final matrix is {myMatrix}")
     return myMatrix

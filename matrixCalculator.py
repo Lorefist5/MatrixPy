@@ -46,18 +46,18 @@ elif userChoice == "ms":
     rows =         inputs.getSecuredInt("Enter the amount of rows you want for your matrix: ")
     columns =      inputs.getSecuredInt("Enter the amount of columns you want for your matrix: ")
 
-    myMatrix = inputs.createMatrix(rows,columns)
+    myMatrix =     inputs.createMatrix(rows,columns)
     scalarNumber = inputs.getSecuredInt("Enter the scalar you want to use for multiplcation: ")
-    results = matrix.multiplicationByScalar(scalarNumber,myMatrix)
+    results =      matrix.multiplicationByScalar(scalarNumber,myMatrix)
     print(f"The results are:{matrix.toString(results)}")
 
 elif userChoice == "mm":
-    firstMatrixRows = inputs.getSecuredInt("Enter the rows you want for your first matrix: ")
+    firstMatrixRows =     inputs.getSecuredInt("Enter the rows you want for your first matrix: ")
     #This will define the columns for the first matrix and the rows for the second matrix
-    matrix1CMatrix2R = inputs.getSecuredInt("Enter the columns you want for your first matrix and the rows you want for your second column: ")
+    matrix1CMatrix2R =    inputs.getSecuredInt("Enter the columns you want for your first matrix and the rows you want for your second column: ")
     secondMatrixColumns = inputs.getSecuredInt("Enter the columns you want for your second matrix: ")
 
-    firstMatrix = inputs.createMatrix(firstMatrixRows,matrix1CMatrix2R)
+    firstMatrix =  inputs.createMatrix(firstMatrixRows,matrix1CMatrix2R)
     secondMatrix = inputs.createMatrix(matrix1CMatrix2R, secondMatrixColumns)
 
     results = matrix.multiplyByMatrix(firstMatrix,secondMatrix)
@@ -68,8 +68,8 @@ elif userChoice == "dt":
         "3":"3x3"
     }
     
-    size = int(inputs.multipleChoice("Enter the size of your matrix.",fixedSizes,True))
-    myMatrix = inputs.createMatrix(size,size)
+    size =        int(inputs.multipleChoice("Enter the size of your matrix.",fixedSizes,True))
+    myMatrix =    inputs.createMatrix(size,size)
     determinant = matrix.getDeterminant(myMatrix)
     print(f"The determinant of this matrix is {determinant}")
 elif userChoice == "mn":
@@ -78,7 +78,7 @@ elif userChoice == "mn":
         "3":"3x3"
     }
 
-    size = int(inputs.multipleChoice("Enter the size of your matrix.",fixedSizes,True))
+    size =     int(inputs.multipleChoice("Enter the size of your matrix.",fixedSizes,True))
     myMatrix = inputs.createMatrix(size,size)
     if matrix.getDeterminant(myMatrix) == 0:
         print("The matrix is singular (determinant is zero).")
@@ -104,7 +104,7 @@ elif userChoice == "inv":
         "3":"3x3"
     }
 
-    size = int(inputs.multipleChoice("Enter the size of your matrix.",fixedSizes,True))
+    size =     int(inputs.multipleChoice("Enter the size of your matrix.",fixedSizes,True))
     myMatrix = inputs.createMatrix(size,size)
     if matrix.getDeterminant(myMatrix) == 0:
         print("The matrix is singular (determinant is zero).")
